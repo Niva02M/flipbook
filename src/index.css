@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for 3D transformations */
+.perspective-1500 {
+  perspective: 1500px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.book-page {
+  position: absolute;
+  width: 330px;
+  height: 430px;
+  background-color: white;
+  border-radius: 0 15px 15px 0;
+  transform-style: preserve-3d;
+  transform-origin: left;
+}
