@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./components/Modal";
-import cover from "./assets/cover.png";
+import cover from "./assets/0.png";
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
