@@ -1,34 +1,53 @@
 import React, { useState } from "react";
 import Modal from "./components/Modal";
 import cover from "./assets/0.png";
+import flyerCover from "./assets/flyer/0.png";
+import cookerCover from "./assets/cooker/0.png";
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = (book) => {
+    setSelectedBook(book);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBook(null);
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi totam
-      consectetur exercitationem cumque iste, delectus minus error fuga itaque
-      earum repellat, magni possimus doloremque perspiciatis sapiente commodi
-      magnam ducimus ab. Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Sunt, voluptatum, a rem reiciendis debitis provident error repellat
-      distinctio deserunt culpa nostrum delectus possimus molestiae dolor
-      repudiandae hic, voluptatibus saepe iusto. Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Iste, ratione velit! Ullam quod vitae
-      debitis, iure magnam non accusamus voluptate. Excepturi aliquam voluptas,
-      sunt neque dolores unde cupiditate blanditiis quas. Lorem ipsum dolor sit
-      amet consectetur, adipisicing elit. Consectetur tempora placeat, impedit
-      repellendus unde iusto odit quis suscipit vitae velit officiis. Rem,
-      quasi! Quae fuga aspernatur nam rerum, minus quidem?
-      <img
-        src={cover}
-        onClick={openModal}
-        className="h-[200px] bg-red-900 p-2"
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-300 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <img
+          src={cover}
+          onClick={() => openModal("first")}
+          className="h-[200px]  p-2 cursor-pointer shadow-lg shadow-gray-500"
+          alt="First Book Cover"
+        />
+
+        <img
+          src={flyerCover}
+          onClick={() => openModal("second")}
+          className="h-[200px]  p-2 cursor-pointer shadow-lg shadow-gray-500"
+          alt="Second Book Cover"
+        />
+
+        <img
+          src={cookerCover}
+          onClick={() => openModal("third")}
+          className="h-[200px]  p-2 cursor-pointer shadow-lg shadow-gray-500"
+          alt="Third Book Cover"
+        />
+      </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        selectedBook={selectedBook}
       />
-      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };

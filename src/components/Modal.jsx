@@ -1,7 +1,9 @@
 import React from "react";
 import MyBook from "./MyBook";
+import FlyerBook from "./FlyerBook";
+import CookerBook from "./CookerBook";
 
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, selectedBook }) => {
   if (!isOpen) return null;
 
   return (
@@ -18,7 +20,9 @@ const Modal = ({ isOpen, onClose }) => {
             Drag or tap on the page to navigate
           </h1>
         </div>
-        <MyBook />
+        {selectedBook === "first" && <MyBook />}
+        {selectedBook === "second" && <FlyerBook />}
+        {selectedBook === "third" && <CookerBook />}
       </div>
     </div>
   );

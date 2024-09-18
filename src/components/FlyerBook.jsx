@@ -3,17 +3,14 @@ import HTMLFlipBook from "react-pageflip";
 import "./../index.css";
 import { GrCaretNext } from "react-icons/gr";
 import { GrCaretPrevious } from "react-icons/gr";
+const images = import.meta.glob("./../assets/flyer/*.png", { eager: true });
 
-// To dynamically import all images from the assets folder instead of making an array
-const images = import.meta.glob("./../assets/*.png", { eager: true });
-
-// Convert the imported modules into an array of image URLs, sorting them by file name (which is saved by name 0.png-62.png)
 const imageArray = Object.entries(images)
-  .sort((a, b) => {
-    const aIndex = parseInt(a[0].match(/(\d+)\.png$/)[1], 10);
-    const bIndex = parseInt(b[0].match(/(\d+)\.png$/)[1], 10);
-    return aIndex - bIndex;
-  })
+  .sort(
+    (a, b) =>
+      parseInt(a[0].match(/(\d+)\.png$/)[1], 10) -
+      parseInt(b[0].match(/(\d+)\.png$/)[1], 10)
+  )
   .map((module) => module[1].default);
 
 const flipSettings = {
@@ -26,7 +23,7 @@ const flipSettings = {
   flippingTime: 1000,
 };
 
-const MyBook = () => {
+const FlyerBook = () => {
   const flipBookRef = useRef(null);
   const handleNextPage = () => {
     if (flipBookRef.current) {
@@ -39,6 +36,7 @@ const MyBook = () => {
       flipBookRef.current.pageFlip().flipPrev();
     }
   };
+
   return (
     <div className="flex justify-center items-center p-4 ">
       <button
@@ -46,7 +44,7 @@ const MyBook = () => {
         className=" text-white p-3 rounded-full hover:bg-red-700 m-4 hidden md:flex"
       >
         <GrCaretPrevious />
-      </button>
+      </button>{" "}
       <HTMLFlipBook ref={flipBookRef} {...flipSettings}>
         {imageArray.map((image, index) => (
           <div key={index} className="w-full h-full">
@@ -65,7 +63,6 @@ const MyBook = () => {
           </div>
         ))}
       </HTMLFlipBook>
-
       <button
         onClick={handleNextPage}
         className=" text-white p-3 rounded-full hover:bg-red-700 m-4 hidden md:flex"
@@ -76,4 +73,4 @@ const MyBook = () => {
   );
 };
 
-export default MyBook;
+export default FlyerBook;
