@@ -20,6 +20,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-300 ">
+    <span>hi</span>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <img
           src={cover}
